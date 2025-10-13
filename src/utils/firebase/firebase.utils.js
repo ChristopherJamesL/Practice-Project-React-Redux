@@ -6,7 +6,7 @@ import {
   getRedirectResult,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -20,6 +20,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 provider.setCustomParameters({
@@ -27,41 +28,33 @@ provider.setCustomParameters({
 });
 
 export const signInWithGooglePopup = async () => {
-  try {
-    const result = await signInWithPopup(auth, provider);
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const googleAPIAccessToken = credential.accessToken;
-    const user = result.user;
-    return {
-      result,
-      googleAPIAccessToken,
-      user,
-    };
-  } catch (e) {
-    console.log("Error Signing In With Popup: ", e.message);
-  }
+  const result = await signInWithPopup(auth, provider);
+  return result;
 };
 
-// signInWithRedirect(auth, provider);
+export const createUserDocumentFromAuth = async (userAuth) => {
+  const { uid } = userAuth;
 
-// getRedirectResult(auth)
-//   .then((result) => {
-//     // This gives you a Google Access Token. You can use it to access Google APIs.
-//     const credential = GoogleAuthProvider.credentialFromResult(result);
-//     const token = credential.accessToken;
+  const userDocRef = doc(db, "users", uid);
 
-//     // The signed-in user info.
-//     const user = result.user;
-//     // IdP data available using getAdditionalUserInfo(result)
-//     // ...
-//   })
-//   .catch((error) => {
-//     // Handle Errors here.
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // The email of the user's account used.
-//     const email = error.customData.email;
-//     // The AuthCredential type that was used.
-//     const credential = GoogleAuthProvider.credentialFromError(error);
-//     // ...
-//   });
+  const userSnapshot = await getDoc(userDocRef);
+  console.log("User Snapshot Data: ", userSnapshot.data());
+  console.log("User exists: ", userSnapshot.exists());
+
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      const user = await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt,
+      });
+    } catch (e) {
+      console.log("error creating the user: ", e.message);
+    }
+  }
+
+  return userDocRef;
+};

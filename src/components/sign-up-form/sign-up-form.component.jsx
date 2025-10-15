@@ -57,7 +57,7 @@ export default function SignUpForm() {
   return (
     <div className="sign-up-container">
       <h2>Don't Have An Account?</h2>
-      <span>Sign Up With Your Email And Password</span>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"

@@ -19,8 +19,6 @@ export default function SignUpForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  console.log(formFields);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -42,8 +40,7 @@ export default function SignUpForm() {
       );
 
       const userToCreate = { ...user, displayName };
-      const userDocRef = await createUserDocumentFromAuth(userToCreate);
-      console.log("response: ", userDocRef);
+      await createUserDocumentFromAuth(userToCreate);
       setFormFields(defaultFormFields);
     } catch (e) {
       if (e.code === "auth/email-already-in-use") {

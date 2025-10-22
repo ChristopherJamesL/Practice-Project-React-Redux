@@ -73,8 +73,6 @@ export const CartProvider = ({ children }) => {
 
     setCartCount(newCartCount);
     setCartTotal(newCartTotal);
-
-    console.log("Cart Items: ", cartItems);
   }, [cartItems]);
 
   const value = {

@@ -1,19 +1,20 @@
-import { useContext } from "react";
-import { ProductsContext } from "../../../contexts/products.context";
-import ProductCard from "../../product-card/product-card.component";
+import { Routes, Route, useNavigate } from "react-router";
 
 import "./shop.styles.scss";
+import CategoriesPreview from "../categories-preview/categories-preview.component";
+import CategoryItem from "../../category-item/category-item.component";
 
 export default function Shop() {
-  const { products } = useContext(ProductsContext);
+  const navigate = useNavigate();
+
+  const handleNavigate = (category) => {
+    navigate(`/shop/${category}`);
+  };
 
   return (
-    <div className="products-container">
-      {products.map((product) => {
-        const { id } = product;
-
-        return <ProductCard key={id} product={product} />;
-      })}
-    </div>
+    <Routes>
+      <Route index element={<CategoriesPreview />} />
+      <Route path=":category" element={<CategoryItem />} />
+    </Routes>
   );
 }

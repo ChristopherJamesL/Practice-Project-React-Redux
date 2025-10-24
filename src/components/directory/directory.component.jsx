@@ -1,4 +1,4 @@
-import CategoryItem from "../category-item/category-item.component";
+import DirectoryItem from "../directory-item/directory-item.component";
 
 import "./directory.styles.scss";
 
@@ -7,7 +7,7 @@ export default function Directory({ categories }) {
     <div className="directory-container">
       {categories.map((category) => {
         const { id } = category;
-        return <CategoryItem key={id} category={category} />;
+        return <DirectoryItem key={id} category={category} />;
       })}
     </div>
   );

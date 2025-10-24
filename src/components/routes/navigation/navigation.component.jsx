@@ -7,7 +7,12 @@ import { signOutUser } from "../../../utils/firebase/firebase.utils";
 import CartIcon from "../../cart-icon/cart-icon.component";
 import CartDropdown from "../../cart-dropdown/cart-dropdown.component";
 
-import "./navigation.styles.scss";
+import {
+  NavigationContainer,
+  LogoContainer,
+  NavLinksContainer,
+  NavLink,
+} from "./navigation.styles";
 
 export default function Navigation() {
   const { currentUser } = useContext(UserContext);
@@ -19,27 +24,23 @@ export default function Navigation() {
 
   return (
     <>
-      <div className="navigation">
+      <NavigationContainer>
         <Link className="logo-container" to="/">
           <CrwnLogo />
         </Link>
-        <div className="nav-links-container">
-          <Link className="nav-link" to="/shop">
-            SHOP
-          </Link>
+        <NavLinksContainer>
+          <NavLink to="/shop">SHOP</NavLink>
           {currentUser ? (
-            <span className="nav-link" onClick={handleSignOut}>
+            <NavLink as="span" className="nav-link" onClick={handleSignOut}>
               SIGN OUT
-            </span>
+            </NavLink>
           ) : (
-            <Link className="nav-link" to="/sign-in">
-              SIGN IN
-            </Link>
+            <NavLink to="/sign-in">SIGN IN</NavLink>
           )}
           <CartIcon />
           {isCartOpen && <CartDropdown />}
-        </div>
-      </div>
+        </NavLinksContainer>
+      </NavigationContainer>
       <Outlet />
     </>
   );

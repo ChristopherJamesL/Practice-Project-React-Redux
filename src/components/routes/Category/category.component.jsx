@@ -15,18 +15,14 @@ export default function Category() {
   }, [category, categoriesMap]);
 
   return (
-    <div>
-      <div>
-        <h2>
-          <span className="category-title">{category.toUpperCase()}</span>
-        </h2>
-      </div>
+    <>
+      <h2 className="category-title">{category.toUpperCase()}</h2>
       <div className="category-container">
         {products &&
           products.map((product) => {
             return <ProductCard key={product.id} product={product} />;
           })}
       </div>
-    </div>
+    </>
   );
 }

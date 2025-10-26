@@ -4,7 +4,11 @@ import { CartContext } from "../../contexts/cart.context";
 import CartItem from "../cart-item/cart-item.component";
 import Button from "../button/button.component";
 
-import "./cart-dropdown.styles.scss";
+import {
+  CartDropdownContainer,
+  CartItems,
+  CartButton,
+} from "./cart-dropdown.styles.jsx";
 
 export default function CartDropdown() {
   const { cartItems, setIsCartOpen } = useContext(CartContext);
@@ -16,13 +20,15 @@ export default function CartDropdown() {
   };
 
   return (
-    <div className="cart-dropdown-container">
-      <div className="cart-items">
+    <CartDropdownContainer>
+      <CartItems>
         {cartItems.map((item, index) => {
           return <CartItem key={index} cartItem={item} />;
         })}
-      </div>
-      <Button onClick={handleNavigate}>CHECKOUT</Button>
-    </div>
+      </CartItems>
+      <Button style={{ marginTop: "auto" }} onClick={handleNavigate}>
+        CHECKOUT
+      </Button>
+    </CartDropdownContainer>
   );
 }

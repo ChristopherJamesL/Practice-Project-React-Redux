@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { CartContext } from "../../contexts/cart.context";
 import CartItem from "../cart-item/cart-item.component";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import {
   CartDropdownContainer,
+  EmptyMessage,
   CartItems,
-  CartButton,
 } from "./cart-dropdown.styles.jsx";
 
 export default function CartDropdown() {
@@ -22,11 +22,15 @@ export default function CartDropdown() {
   return (
     <CartDropdownContainer>
       <CartItems>
-        {cartItems.map((item, index) => {
-          return <CartItem key={index} cartItem={item} />;
-        })}
+        {cartItems.length ? (
+          cartItems.map((item, index) => {
+            return <CartItem key={index} cartItem={item} />;
+          })
+        ) : (
+          <EmptyMessage>Your Cart Is Empty</EmptyMessage>
+        )}
       </CartItems>
-      <Button style={{ marginTop: "auto" }} onClick={handleNavigate}>
+      <Button buttonType={BUTTON_TYPE_CLASSES.base} onClick={handleNavigate}>
         CHECKOUT
       </Button>
     </CartDropdownContainer>

@@ -3,7 +3,8 @@ import { useContext, useState, useEffect } from "react";
 import { CategoriesContext } from "../../../contexts/categories.context";
 import ProductCard from "../../product-card/product-card.component";
 
-import "./category.styles.scss";
+import "./category.styles.jsx";
+import { CategoryContainer, CategoryTitle } from "./category.styles.jsx";
 
 export default function Category() {
   const [products, setProducts] = useState([]);
@@ -16,13 +17,13 @@ export default function Category() {
 
   return (
     <>
-      <h2 className="category-title">{category.toUpperCase()}</h2>
-      <div className="category-container">
+      <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
+      <CategoryContainer>
         {products &&
           products.map((product) => {
             return <ProductCard key={product.id} product={product} />;
           })}
-      </div>
+      </CategoryContainer>
     </>
   );
 }

@@ -25,9 +25,9 @@ export default function Navigation() {
   return (
     <>
       <NavigationContainer>
-        <Link className="logo-container" to="/">
+        <LogoContainer to="/">
           <CrwnLogo />
-        </Link>
+        </LogoContainer>
         <NavLinksContainer>
           <NavLink to="/shop">SHOP</NavLink>
           {currentUser ? (

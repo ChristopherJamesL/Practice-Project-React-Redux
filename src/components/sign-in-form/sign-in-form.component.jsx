@@ -37,7 +37,6 @@ export default function SignInForm() {
         email,
         password
       );
-      console.log("response: ", user);
       setFormFields(defaultFormFields);
     } catch (e) {
       switch (e.code) {

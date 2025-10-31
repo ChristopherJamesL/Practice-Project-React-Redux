@@ -12,6 +12,7 @@ import {
 
 export default function CartDropdown() {
   const { cartItems, setIsCartOpen } = useContext(CartContext);
+
   let navigate = useNavigate();
 
   const handleNavigate = () => {

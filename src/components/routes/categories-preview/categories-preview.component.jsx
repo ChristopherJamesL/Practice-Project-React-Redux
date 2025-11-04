@@ -1,16 +1,9 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router";
-import { CategoriesContext } from "../../../contexts/categories.context";
 import CategoryPreview from "../../category-preview/category-preview.component";
+import { useSelector } from "react-redux";
+import { selectCategoriesMap } from "../../../store/categories/categories.selector";
 
 export default function CategoriesPreview() {
-  const { categoriesMap } = useContext(CategoriesContext);
-
-  const navigate = useNavigate();
-
-  const handleNavigate = (category) => {
-    navigate(`/shop/${category}`);
-  };
+  const categoriesMap = useSelector(selectCategoriesMap);
 
   return (
     <>

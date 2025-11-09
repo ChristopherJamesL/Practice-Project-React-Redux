@@ -6,17 +6,6 @@ import {
 } from "./categories.action";
 import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 
-// export const fetchCategoriesAsync = () => async (dispatch) => {
-//   dispatch(fetchCategoriesStart());
-
-//   try {
-//     const categoriesArray = await getCategoriesAndDocuments();
-//     dispatch(fetchCategoriesSuccess(categoriesArray));
-//   } catch (error) {
-//     dispatch(fetchCategoriesFailed(error));
-//   }
-// };
-
 export function* fetchCategoriesAsync() {
   try {
     const categoriesArray = yield call(getCategoriesAndDocuments);

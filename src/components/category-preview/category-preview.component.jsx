@@ -17,7 +17,7 @@ export default function CategoryPreview({ title, products }) {
       <h2>
         <Title to={title}>{title.toUpperCase()}</Title>
       </h2>
-      {isLoading ? (
+      {isLoading || !products ? (
         <Spinner />
       ) : (
         <Preview>

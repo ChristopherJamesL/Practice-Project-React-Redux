@@ -16,6 +16,7 @@ export const selectCategoriesMap = createSelector(
   [selectCategories],
   (categories) => {
     console.log("selector fired");
+    console.log("categories: ", categories);
 
     return categories.reduce((acc, category) => {
       const { title, items } = category;

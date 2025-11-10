@@ -10,20 +10,21 @@ import Home from "./components/routes/home/home.component";
 import Shop from "./components/routes/shop/shop.component";
 import Authentication from "./components/routes/authentication/authentication.component";
 import Checkout from "./components/routes/checkout/checkout.component";
-import { setCurrentUser } from "./store/user/user.action";
+import { checkUserSession, setCurrentUser } from "./store/user/user.action";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      dispatch(setCurrentUser(user));
-    });
+    dispatch(checkUserSession());
+    // const unsubscribe = onAuthStateChangedListener((user) => {
+    //   if (user) {
+    //     createUserDocumentFromAuth(user);
+    //   }
+    //   dispatch(setCurrentUser(user));
+    // });
 
-    return unsubscribe;
+    // return unsubscribe;
   }, []);
 
   return (

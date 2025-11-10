@@ -1,4 +1,4 @@
-import { takeLastest, all, call, put, takeLatest } from "redux-saga/effects";
+import { all, call, put, takeLatest } from "redux-saga/effects";
 import { CATEGORIES_ACTION_TYPES } from "./categories.types";
 import {
   fetchCategoriesSuccess,

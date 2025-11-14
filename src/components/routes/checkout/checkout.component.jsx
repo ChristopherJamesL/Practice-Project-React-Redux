@@ -4,6 +4,7 @@ import {
   selectCartTotal,
 } from "../../../store/cart/cart.selector.js";
 import CheckoutItem from "../../checkout-item/checkout-item.component";
+import PaymentForm from "../../payment-form/payment-form.component.jsx";
 
 import "./checkout.styles.jsx";
 import {
@@ -41,6 +42,7 @@ export default function Checkout() {
         return <CheckoutItem key={id} cartItem={cartItem} />;
       })}
       <Total>Total: {cartTotal}</Total>
+      <PaymentForm />
     </CheckoutContainer>
   );
 }

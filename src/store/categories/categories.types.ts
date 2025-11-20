@@ -6,3 +6,15 @@ export const CATEGORIES_ACTION_TYPES = {
 
 export type CategoriesActionType =
   (typeof CATEGORIES_ACTION_TYPES)[keyof typeof CATEGORIES_ACTION_TYPES];
+
+export type CategoryItem = {
+  id: number;
+  imageUrl: string;
+  name: string;
+  price: number;
+};
+
+export type Category = {
+  title: string;
+  items: CategoryItem[];
+};

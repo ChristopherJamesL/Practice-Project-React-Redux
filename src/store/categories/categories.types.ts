@@ -18,3 +18,7 @@ export type Category = {
   title: string;
   items: CategoryItem[];
 };
+
+export type CategoryMap = {
+  [key: string]: CategoryItem[];
+};

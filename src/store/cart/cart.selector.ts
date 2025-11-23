@@ -1,10 +1,11 @@
 import { createSelector } from "reselect";
+import { CartState } from "./cart.types";
 
 // ====================
 // Cart Slice Selector
 // ====================
 
-const selectCartReducer = (state) => state.cart;
+const selectCartReducer = (state): CartState => state.cart;
 
 // ====================
 // Base Selectors

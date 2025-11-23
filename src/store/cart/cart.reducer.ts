@@ -1,6 +1,6 @@
-import { CART_ACTION_TYPES } from "./cart.types";
+import { CART_ACTION_TYPES, CartState } from "./cart.types";
 
-const INITIAL_STATE = {
+const INITIAL_STATE: CartState = {
   isCartOpen: false,
   cartItems: [],
 };

@@ -4,8 +4,8 @@ export const CATEGORIES_ACTION_TYPES = {
   FETCH_CATEGORIES_FAILED: "FETCH_CATEGORIES_FAILED",
 } as const;
 
-export type CategoriesActionType =
-  (typeof CATEGORIES_ACTION_TYPES)[keyof typeof CATEGORIES_ACTION_TYPES];
+// export type CategoriesActionType =
+//   (typeof CATEGORIES_ACTION_TYPES)[keyof typeof CATEGORIES_ACTION_TYPES];
 
 export type CategoryItem = {
   id: number;

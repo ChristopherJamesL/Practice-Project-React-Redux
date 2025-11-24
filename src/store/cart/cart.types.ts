@@ -4,8 +4,8 @@ export const CART_ACTION_TYPES = {
 } as const;
 
 export type CartState = {
-  isCartOpen: boolean;
-  cartItems: CartItem[];
+  readonly isCartOpen: boolean;
+  readonly cartItems: readonly CartItem[];
 };
 
 export type CartItem = Product & {

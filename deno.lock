@@ -18,6 +18,10 @@
         "npm:@testing-library/jest-dom@^6.9.1",
         "npm:@testing-library/react@^16.3.0",
         "npm:@testing-library/user-event@^13.5.0",
+        "npm:@types/jest@30",
+        "npm:@types/node@^24.10.1",
+        "npm:@types/react-dom@^19.2.3",
+        "npm:@types/react@^19.2.6",
         "npm:dotenv@^17.2.3",
         "npm:firebase@^12.4.0",
         "npm:react-dom@^19.2.0",
@@ -32,7 +36,9 @@
         "npm:redux@^5.0.1",
         "npm:reselect@^5.1.1",
         "npm:sass@^1.93.2",
+        "npm:stripe@^19.3.1",
         "npm:styled-components@^6.1.19",
+        "npm:typescript@^5.9.3",
         "npm:web-vitals@^2.1.4"
       ]
     }

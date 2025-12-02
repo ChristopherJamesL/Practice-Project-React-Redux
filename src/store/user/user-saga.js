@@ -6,6 +6,7 @@ import {
   emailSignUpSuccess,
   signOutSuccess,
   signOutFailed,
+  emailSignUpFailed,
 } from "./user.action";
 import {
   createAuthUserWithEmailAndPassword,
@@ -57,7 +58,8 @@ export function* signUpUserWithEmailAndPassword({
 
     yield put(signInSuccess({ ...userSnapshot.data(), id: userSnapshot.id }));
   } catch (error) {
-    yield put(signInFailed(error));
+    // yield put(signInFailed(error));
+    yield put(emailSignUpFailed(error));
   }
 }
 

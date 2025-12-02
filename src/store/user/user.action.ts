@@ -40,6 +40,11 @@ export type SignInSuccess = ActionWithPayload<
   User
 >;
 
+export type EmailSignUpFailed = ActionWithPayload<
+  typeof USER_ACTION_TYPES.EMAIL_SIGN_UP_FAILED,
+  Error
+>;
+
 export type SignInFailed = ActionWithPayload<
   typeof USER_ACTION_TYPES.SIGN_IN_FAILED,
   SignInFailedError
@@ -79,6 +84,11 @@ export const emailSignInStart = withMatcher(
 export const signInSuccess = withMatcher(
   (user: User): SignInSuccess =>
     createAction(USER_ACTION_TYPES.SIGN_IN_SUCCESS, user)
+);
+
+export const emailSignUpFailed = withMatcher(
+  (error: Error): EmailSignUpFailed =>
+    createAction(USER_ACTION_TYPES.EMAIL_SIGN_UP_FAILED, error)
 );
 
 export const signInFailed = withMatcher(

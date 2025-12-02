@@ -38,7 +38,7 @@ export default function SignUpForm() {
     }
 
     try {
-      dispatch(emailSignUpStart(email, password, displayName));
+      dispatch(emailSignUpStart({ email, password, displayName }));
 
       setFormFields(defaultFormFields);
     } catch (e) {

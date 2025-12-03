@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import {
   emailSignInStart,
   googleSignInStart,
-} from "../../store/user/user.action.js";
+} from "../../store/user/user.action";
 import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
-import { ButtonsContainer, SignInContainer } from "./sign-in-form.styles.jsx";
+import { ButtonsContainer, SignInContainer } from "./sign-in-form.styles";
 
 const defaultFormFields = {
   email: "",
@@ -36,10 +36,6 @@ export default function SignInForm() {
 
     try {
       dispatch(emailSignInStart(email, password));
-      // const { user } = await signInAuthUserWithEmailAndPassword(
-      //   email,
-      //   password
-      // );
       setFormFields(defaultFormFields);
     } catch (e) {
       switch (e.code) {

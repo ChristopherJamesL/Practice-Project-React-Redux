@@ -6,8 +6,8 @@ import {} from // createAuthUserWithEmailAndPassword,
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
-import { SignUpContainer } from "./sign-up-form.styles.jsx";
-import { emailSignUpStart } from "../../store/user/user.action.js";
+import { SignUpContainer } from "./sign-up-form.styles";
+import { emailSignUpStart } from "../../store/user/user.action";
 // import "./sign-up-form.styles.jsx";
 
 const defaultFormFields = {

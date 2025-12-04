@@ -48,6 +48,8 @@ sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
 
+export type RootAction = ReturnType<typeof store.dispatch>;
+
 const reduxStore = { store, persistor };
 
 export default reduxStore;

@@ -1,3 +1,7 @@
+// ===========================
+// ACTION TYPES
+// ===========================
+
 export const USER_ACTION_TYPES = {
   SET_CURRENT_USER: "SET_CURRENT_USER",
   CHECK_USER_SESSION: "CHECK_USER_SESSION",
@@ -12,11 +16,19 @@ export const USER_ACTION_TYPES = {
   SIGN_OUT_FAILED: "SIGN_OUT_FAILED",
 } as const;
 
+// ===========================
+// STATE TYPES
+// ===========================
+
 export type UserState = {
   readonly currentUser: User | null;
   readonly isLoading: boolean;
   readonly error: SignInFailedError | SignOutFailedError | null;
 };
+
+// ===========================
+// PAYLOAD TYPES
+// ===========================
 
 export type EmailSignUpStartPayload = {
   email: string;
@@ -29,6 +41,10 @@ export type EmailSignInStartPayload = {
   password: string;
 };
 
+// ===========================
+// USER TYPE
+// ===========================
+
 export type User = {
   id: string;
   email: string;
@@ -39,6 +55,24 @@ export type User = {
   };
 };
 
+// ===========================
+// ERROR TYPES
+// ===========================
+
 export type SignInFailedError = Error | null;
 
 export type SignOutFailedError = Error | null;
+
+// ===========================
+// ACTION INTERFACES
+// ===========================
+
+export interface EmailSignUpStartAction {
+  type: typeof USER_ACTION_TYPES.EMAIL_SIGN_UP_START;
+  payload: EmailSignUpStartPayload;
+}
+
+export interface SignInWithEmailAction {
+  type: typeof USER_ACTION_TYPES.EMAIL_SIGN_IN_START;
+  payload: EmailSignInStartPayload;
+}

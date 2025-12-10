@@ -62,17 +62,3 @@ export type User = {
 export type SignInFailedError = Error | null;
 
 export type SignOutFailedError = Error | null;
-
-// ===========================
-// ACTION INTERFACES
-// ===========================
-
-export interface EmailSignUpStartAction {
-  type: typeof USER_ACTION_TYPES.EMAIL_SIGN_UP_START;
-  payload: EmailSignUpStartPayload;
-}
-
-export interface SignInWithEmailAction {
-  type: typeof USER_ACTION_TYPES.EMAIL_SIGN_IN_START;
-  payload: EmailSignInStartPayload;
-}

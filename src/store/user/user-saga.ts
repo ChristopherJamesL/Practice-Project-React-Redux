@@ -22,11 +22,8 @@ import {
 
 import { User, UserCredential } from "firebase/auth";
 import { QueryDocumentSnapshot } from "firebase/firestore";
-import {
-  User as UserData,
-  EmailSignUpStartAction,
-  SignInWithEmailAction,
-} from "./user.types";
+import { User as UserData } from "./user.types";
+import { EmailSignUpStart, EmailSignInStart } from "./user.action";
 
 // ===========================
 // WORKER SAGAS
@@ -60,7 +57,7 @@ export function* isUserAuthenticated() {
 
 export function* signUpUserWithEmailAndPassword({
   payload: { email, password, displayName },
-}: EmailSignUpStartAction) {
+}: EmailSignUpStart) {
   try {
     const userCredential: UserCredential | undefined = yield call(
       createAuthUserWithEmailAndPassword,
@@ -92,7 +89,7 @@ export function* signInWithGoogle() {
 
 export function* signInWithEmail({
   payload: { email, password },
-}: SignInWithEmailAction) {
+}: EmailSignInStart) {
   try {
     const userCredential: UserCredential | undefined = yield call(
       signInAuthUserWithEmailAndPassword,

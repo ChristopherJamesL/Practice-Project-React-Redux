@@ -4,9 +4,11 @@ import {
   emailSignInStart,
   googleSignInStart,
 } from "../../store/user/user.action";
-import { signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
+
+import { FormEvent, ChangeEvent } from "react";
+import { FirebaseError } from "firebase/app";
 
 import { ButtonsContainer, SignInContainer } from "./sign-in-form.styles";
 
@@ -21,7 +23,7 @@ export default function SignInForm() {
 
   const dispatch = useDispatch();
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setFormFields({ ...formFields, [name]: value });
@@ -31,14 +33,15 @@ export default function SignInForm() {
     dispatch(googleSignInStart());
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      dispatch(emailSignInStart(email, password));
+      dispatch(emailSignInStart({ email, password }));
       setFormFields(defaultFormFields);
     } catch (e) {
-      switch (e.code) {
+      const error = e as FirebaseError;
+      switch (error.code) {
         case "auth/invalid-credential":
           alert("Incorrect password or email");
           break;

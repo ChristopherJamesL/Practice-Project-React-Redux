@@ -5,7 +5,6 @@ import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import { emailSignUpStart } from "../../store/user/user.action";
 
 import { FormEvent, ChangeEvent } from "react";
-import { FirebaseError } from "firebase/app";
 import { AuthError, AuthErrorCodes } from "firebase/auth";
 
 import { SignUpContainer } from "./sign-up-form.styles";

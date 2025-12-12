@@ -12,6 +12,7 @@ import {
   LogoContainer,
   NavLinksContainer,
   NavLink,
+  ActionLink
 } from "./navigation.styles";
 
 export default function Navigation() {
@@ -32,9 +33,9 @@ export default function Navigation() {
         <NavLinksContainer>
           <NavLink to="/shop">SHOP</NavLink>
           {currentUser ? (
-            <NavLink as="span" className="nav-link" onClick={handleSignOut}>
+            <ActionLink onClick={handleSignOut}>
               SIGN OUT
-            </NavLink>
+            </ActionLink>
           ) : (
             <NavLink to="/sign-in">SIGN IN</NavLink>
           )}

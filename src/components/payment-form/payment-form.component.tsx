@@ -1,12 +1,28 @@
+// React and hooks
 import { useState } from "react";
+
+// Type-only imports
+import type { FormEvent } from "react";
+import type { StripeCardElement } from "@stripe/stripe-js";
+
+// Third-party libraries
 import { useSelector } from "react-redux";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+
+// Store selectors
 import { selectCartTotal } from "../../store/cart/cart.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
+
+// Components
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
+// Styles
 import { PaymentFormContainer, FormContainer } from "./payment-form.styles";
 import { LoadingText, Dots } from "../button/button.styles";
+
+const ifValidCardElement = (
+  card: StripeCardElement | null
+): card is StripeCardElement => card !== null;
 
 export default function PaymentForm() {
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
@@ -17,14 +33,15 @@ export default function PaymentForm() {
   const cartTotal = useSelector(selectCartTotal);
   const currentUser = useSelector(selectCurrentUser);
 
-  const paymentHandler = async (e) => {
+  const paymentHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!stripe || !elements) return;
 
     setIsProcessingPayment(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 4000)); // Simulate processing time in order to see effects
+    // Simulate processing time to show UI feedback
+    await new Promise((resolve) => setTimeout(resolve, 4000));
 
     const response = await fetch("/.netlify/functions/create-payment-intent", {
       method: "POST",
@@ -38,9 +55,13 @@ export default function PaymentForm() {
       paymentIntent: { client_secret },
     } = await response.json();
 
+    const cardDetails = elements.getElement(CardElement);
+
+    if (!ifValidCardElement(cardDetails)) return;
+
     const paymentResult = await stripe.confirmCardPayment(client_secret, {
       payment_method: {
-        card: elements.getElement(CardElement),
+        card: cardDetails,
         billing_details: {
           name: currentUser ? currentUser.displayName : "guest",
         },
@@ -65,7 +86,6 @@ export default function PaymentForm() {
         <CardElement />
         <Button
           disabled={isProcessingPayment}
-          //   isLoading={isProcessingPayment}
           buttonType={BUTTON_TYPE_CLASSES.inverted}
         >
           {isProcessingPayment ? (

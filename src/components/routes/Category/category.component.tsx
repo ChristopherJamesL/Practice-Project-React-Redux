@@ -1,5 +1,4 @@
 import { useParams } from "react-router";
-import { useState, useEffect } from "react";
 import ProductCard from "../../product-card/product-card.component";
 
 import "./category.styles";
@@ -11,22 +10,20 @@ import {
 } from "../../../store/categories/categories.selector";
 import Spinner from "../../spinner/spinner.component";
 
+type CategoryRouteParams = {
+  category: string;
+}
+
 export default function Category() {
-  let { category } = useParams();
+  let { category } = useParams<CategoryRouteParams>();
   console.log("render/re-rendering category component");
   const categoriesMap = useSelector(selectCategoriesMap);
-  const [products, setProducts] = useState([]);
   const isLoading = useSelector(selectCategoriesIsLoading);
-
-  useEffect(() => {
-    console.log("effect fired calling setProducts");
-
-    setProducts(categoriesMap[category.toLowerCase()]);
-  }, [category, categoriesMap]);
+  const products = category ? categoriesMap[category.toLowerCase()] : undefined;
 
   return (
     <>
-      <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
+      <CategoryTitle>{category?.toUpperCase()}</CategoryTitle>
       {isLoading ? (
         <Spinner />
       ) : (

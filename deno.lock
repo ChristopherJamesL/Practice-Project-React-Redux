@@ -38,7 +38,7 @@
         "npm:sass@^1.93.2",
         "npm:stripe@^19.3.1",
         "npm:styled-components@^6.1.19",
-        "npm:typescript@^5.9.3",
+        "npm:typescript@^4.9.5",
         "npm:web-vitals@^2.1.4"
       ]
     }

@@ -38,6 +38,11 @@ export default function PaymentForm() {
 
     if (!stripe || !elements) return;
 
+    if (cartTotal <= 0) {
+      alert("Your cart is empty");
+      return;
+    }
+
     setIsProcessingPayment(true);
 
     // Simulate processing time to show UI feedback

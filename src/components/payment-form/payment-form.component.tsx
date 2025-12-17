@@ -45,9 +45,6 @@ export default function PaymentForm() {
 
     setIsProcessingPayment(true);
 
-    // Simulate processing time to show UI feedback
-    await new Promise((resolve) => setTimeout(resolve, 4000));
-
     const response = await fetch("/.netlify/functions/create-payment-intent", {
       method: "POST",
       headers: {
@@ -72,6 +69,9 @@ export default function PaymentForm() {
         },
       },
     });
+
+    // Simulate processing time to show UI feedback
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     setIsProcessingPayment(false);
 

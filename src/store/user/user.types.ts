@@ -14,6 +14,7 @@ export const USER_ACTION_TYPES = {
   SIGN_OUT_START: "SIGN_OUT_START",
   SIGN_OUT_SUCCESS: "SIGN_OUT_SUCCESS",
   SIGN_OUT_FAILED: "SIGN_OUT_FAILED",
+  CLEAR_USER_ERROR: "CLEAR_USER_ERROR",
 } as const;
 
 // ===========================

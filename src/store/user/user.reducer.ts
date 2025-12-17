@@ -1,6 +1,7 @@
 import { AnyAction } from "redux";
 import { UserState } from "./user.types";
 import {
+  clearUserError,
   emailSignUpFailed,
   signInFailed,
   signInSuccess,
@@ -30,6 +31,8 @@ export const userReducer = (
   if (signInFailed.match(action)) return { ...state, error: action.payload };
 
   if (signOutFailed.match(action)) return { ...state, error: action.payload };
+
+  if (clearUserError.match(action)) return { ...state, error: null };
 
   return state;
 };

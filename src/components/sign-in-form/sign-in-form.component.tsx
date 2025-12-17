@@ -1,14 +1,16 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  clearUserError,
   emailSignInStart,
   googleSignInStart,
 } from "../../store/user/user.action";
+import { selectUserError } from "../../store/user/user.selector";
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import { FormEvent, ChangeEvent } from "react";
-import { FirebaseError } from "firebase/app";
+// import { FirebaseError } from "firebase/app";
 
 import { ButtonsContainer, SignInContainer } from "./sign-in-form.styles";
 
@@ -20,8 +22,28 @@ const defaultFormFields = {
 export default function SignInForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-
   const dispatch = useDispatch();
+  const signInError = useSelector(selectUserError);
+
+  useEffect(() => {
+    if (signInError) {
+      const { message } = signInError;
+      let friendlyMessage = "Something went wrong";
+
+      if (
+        message?.includes("wrong-password") ||
+        message?.includes("invalid-credential") ||
+        message?.includes("user-not-found")
+      ) {
+        friendlyMessage = "Incorrect email or password";
+      } else if (message?.includes("user-disabled")) {
+        friendlyMessage = "This account has been disabled";
+      }
+
+      alert(friendlyMessage);
+      dispatch(clearUserError());
+    }
+  }, [signInError, dispatch]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -36,19 +58,8 @@ export default function SignInForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      dispatch(emailSignInStart({ email, password }));
-      setFormFields(defaultFormFields);
-    } catch (e) {
-      const error = e as FirebaseError;
-      switch (error.code) {
-        case "auth/invalid-credential":
-          alert("Incorrect password or email");
-          break;
-        default:
-          alert("Something went wrong");
-      }
-    }
+    dispatch(emailSignInStart({ email, password }));
+    setFormFields(defaultFormFields);
   };
 
   return (

@@ -59,6 +59,8 @@ export type SignOutFailed = ActionWithPayload<
   SignOutFailedError
 >;
 
+export type ClearUserError = Action<typeof USER_ACTION_TYPES.CLEAR_USER_ERROR>;
+
 // ====================
 // Action Functions
 // ====================
@@ -107,4 +109,8 @@ export const signOutSuccess = withMatcher(
 export const signOutFailed = withMatcher(
   (error: SignOutFailedError): SignOutFailed =>
     createAction(USER_ACTION_TYPES.SIGN_OUT_FAILED, error)
+);
+
+export const clearUserError = withMatcher(
+  (): ClearUserError => createAction(USER_ACTION_TYPES.CLEAR_USER_ERROR)
 );

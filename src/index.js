@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router";
 import { PersistGate } from "redux-persist/integration/react";
 import reduxStore from "./store/store";
 import { Elements } from "@stripe/react-stripe-js";
-import { stripePromise, options } from "./utils/stripe/stripe.utils";
+import { stripePromise } from "./utils/stripe/stripe.utils";
 import App from "./App";
 import "./index.scss";
 import reportWebVitals from "./reportWebVitals";

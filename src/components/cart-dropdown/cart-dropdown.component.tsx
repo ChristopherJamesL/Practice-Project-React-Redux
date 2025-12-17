@@ -9,7 +9,7 @@ import {
   CartDropdownContainer,
   EmptyMessage,
   CartItems,
-} from "./cart-dropdown.styles.jsx";
+} from "./cart-dropdown.styles";
 
 export default function CartDropdown() {
   const dispatch = useDispatch();
@@ -26,8 +26,8 @@ export default function CartDropdown() {
     <CartDropdownContainer>
       <CartItems>
         {cartItems.length ? (
-          cartItems.map((item, index) => {
-            return <CartItem key={index} cartItem={item} />;
+          cartItems.map((item) => {
+            return <CartItem key={item.id} cartItem={item} />;
           })
         ) : (
           <EmptyMessage>Your Cart Is Empty</EmptyMessage>

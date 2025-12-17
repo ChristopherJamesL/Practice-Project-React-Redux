@@ -23,7 +23,7 @@ export type SetIsCartOpen = ActionWithPayload<
 // Cart Helper Functions
 // ====================
 
-const addCartItem = (cartItems: CartItem[], productToAdd: Product) => {
+const addCartItem = (cartItems: readonly CartItem[], productToAdd: Product) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
   );
@@ -38,7 +38,10 @@ const addCartItem = (cartItems: CartItem[], productToAdd: Product) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
-const removeCartItem = (cartItems: CartItem[], productToRemove: Product) => {
+const removeCartItem = (
+  cartItems: readonly CartItem[],
+  productToRemove: Product
+) => {
   return cartItems.reduce<CartItem[]>((acc, cartItem) => {
     if (cartItem.id === productToRemove.id) {
       if (cartItem.quantity === 1) return acc;
@@ -49,7 +52,10 @@ const removeCartItem = (cartItems: CartItem[], productToRemove: Product) => {
   }, []);
 };
 
-const clearCartItem = (cartItems: CartItem[], productToClear: Product) => {
+const clearCartItem = (
+  cartItems: readonly CartItem[],
+  productToClear: Product
+) => {
   return cartItems.filter((cartItem) => cartItem.id !== productToClear.id);
 };
 
@@ -71,13 +77,16 @@ export const setIsCartOpen = withMatcher(
 // Cart Operations
 // ====================
 
-export const addItemToCart = (cartItems: CartItem[], productToAdd: Product) => {
+export const addItemToCart = (
+  cartItems: readonly CartItem[],
+  productToAdd: Product
+) => {
   const newCartItems = addCartItem(cartItems, productToAdd);
   return setCartItems(newCartItems);
 };
 
 export const removeItemFromCart = (
-  cartItems: CartItem[],
+  cartItems: readonly CartItem[],
   productToRemove: Product
 ) => {
   const newCartItems = removeCartItem(cartItems, productToRemove);
@@ -85,7 +94,7 @@ export const removeItemFromCart = (
 };
 
 export const clearItemFromCart = (
-  cartItems: CartItem[],
+  cartItems: readonly CartItem[],
   productToClear: Product
 ) => {
   const newCartItems = clearCartItem(cartItems, productToClear);

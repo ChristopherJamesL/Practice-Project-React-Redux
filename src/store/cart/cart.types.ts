@@ -18,3 +18,7 @@ export type Product = {
   name: string;
   price: number;
 };
+
+export type CartItemProps = {
+  cartItem: CartItem;
+};

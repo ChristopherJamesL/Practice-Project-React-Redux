@@ -1,12 +1,12 @@
+import type { CartItemProps } from "../../store/cart/cart.types";
 import {
   CartItemContainer,
   ItemDetails,
   Image,
   Name,
 } from "./cart-item.styles";
-// import "./cart-item.styles";
 
-export default function CartItem({ cartItem }) {
+export default function CartItem({ cartItem }: CartItemProps) {
   const { name, quantity, price, imageUrl } = cartItem;
 
   return (

@@ -12,11 +12,10 @@ import Spinner from "../../spinner/spinner.component";
 
 type CategoryRouteParams = {
   category: string;
-}
+};
 
 export default function Category() {
   let { category } = useParams<CategoryRouteParams>();
-  console.log("render/re-rendering category component");
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
   const products = category ? categoriesMap[category.toLowerCase()] : undefined;

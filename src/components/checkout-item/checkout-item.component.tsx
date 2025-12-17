@@ -6,6 +6,8 @@ import {
   clearItemFromCart,
 } from "../../store/cart/cart.action";
 
+import type { CartItemProps } from "../../store/cart/cart.types";
+
 import {
   CheckoutItemContainer,
   ImageContainer,
@@ -15,7 +17,7 @@ import {
   RemoveButton,
 } from "./checkout-item.styles";
 
-export default function CheckoutItem({ cartItem }) {
+export default function CheckoutItem({ cartItem }: CartItemProps) {
   const { imageUrl, name, quantity, price } = cartItem;
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
@@ -35,22 +37,20 @@ export default function CheckoutItem({ cartItem }) {
   return (
     <CheckoutItemContainer>
       <ImageContainer>
-        <ProductImage src={imageUrl} alt={`${name}`} />
+        <ProductImage src={imageUrl} alt={name} />
       </ImageContainer>
       <BaseSpan>{name}</BaseSpan>
       <Quantity>
-        <div className="arrow" onClick={() => handleDecrement(cartItem)}>
+        <div className="arrow" onClick={() => handleDecrement()}>
           &#10094;
         </div>
         <span className="value">{quantity}</span>
-        <div className="arrow" onClick={() => handleIncrement(cartItem)}>
+        <div className="arrow" onClick={() => handleIncrement()}>
           &#10095;
         </div>
       </Quantity>
       <BaseSpan>{price}</BaseSpan>
-      <RemoveButton onClick={() => handleRemove(cartItem)}>
-        &#10005;
-      </RemoveButton>
+      <RemoveButton onClick={() => handleRemove()}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );
 }

@@ -3,6 +3,8 @@ import { selectCartItems } from "../../store/cart/cart.selector";
 import { addItemToCart } from "../../store/cart/cart.action";
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
+import type { Product } from "../../store/cart/cart.types";
+
 import {
   ProductCartContainer,
   ProductImage,
@@ -11,7 +13,11 @@ import {
   Price,
 } from "./product-card.styles";
 
-export default function ProductCard({ product }) {
+type ProductCardProps = {
+  product: Product;
+};
+
+export default function ProductCard({ product }: ProductCardProps) {
   const { name, imageUrl, price } = product;
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);

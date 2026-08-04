@@ -14,9 +14,8 @@ import {
 
 export default function CartDropdown() {
   const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
-
   let navigate = useNavigate();
+  const cartItems = useSelector(selectCartItems);
 
   const handleNavigate = useCallback(() => {
     navigate("/checkout");

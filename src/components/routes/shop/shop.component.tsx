@@ -10,7 +10,7 @@ export default function Shop() {
 
   useEffect(() => {
     dispatch(fetchCategoriesStart());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>

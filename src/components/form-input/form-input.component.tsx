@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, FC } from "react";
+import { InputHTMLAttributes } from "react";
 
 import { Group, Input, FormInputLabel } from "./form-input.styles";
 

@@ -45,7 +45,7 @@ export default function PaymentForm() {
 
     setIsProcessingPayment(true);
 
-    const response = await fetch("/.netlify/functions/create-payment-intent", {
+    const response = await fetch("/api/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
